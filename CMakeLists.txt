@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.26)
 
 project(
     backported-esl-support
-    VERSION 1.1
+    VERSION 1.2
     LANGUAGES CXX)
 
 set(PROJECT_SOURCE_PATH "${CMAKE_CURRENT_LIST_DIR}/source")

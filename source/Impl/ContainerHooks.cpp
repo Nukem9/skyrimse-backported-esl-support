@@ -1,23 +1,31 @@
+#include <xbyak/xbyak.h>
 #include "RE/Shims.h"
 #include "ContainerHooks.h"
 
 namespace ContainerHooks
 {
-	class TESContainerCtorHook
+	class TESContainerCtorHook : public Xbyak::CodeGenerator
 	{
 	public:
-		static void Thunk(RE::TESContainer1126 *a_container)
-		{
-			*reinterpret_cast<std::uintptr_t *>(a_container) = RE::VTABLE_TESContainer[0].address();
-			a_container->containerObjects = nullptr;
-			a_container->numContainerObjects = 0;
-			a_container->SetBlockStolenItems(false);
-		}
-
 		static std::uintptr_t GetTarget()
 		{
 			// 14019B510 1.6.640
 			return RELOCATION_ID(14370, 14510).address();
+		}
+
+		TESContainerCtorHook()
+		{
+			// This is a leaf function. All other registers are preserved.
+			mov(rax, RE::VTABLE_TESContainer[0].address());
+			mov(ptr[rcx + 0x0], rax);												// VTable
+
+			xor_(rax, rax);
+			mov(ptr[rcx + offsetof(RE::TESContainer, containerObjects)], rax);		// ContainerObjects
+			mov(dword[rcx + offsetof(RE::TESContainer, numContainerObjects)], eax);	// NumContainerObjects
+			mov(byte[rcx + offsetof(RE::TESContainer, pad14)], al);					// BlockStolenItems
+
+			mov(rax, rcx);
+			ret();
 		}
 	};
 
@@ -98,7 +106,10 @@ namespace ContainerHooks
 	void Install()
 	{
 		auto& trampoline = SKSE::GetTrampoline();
-		trampoline.write_branch<5>(TESContainerCtorHook::GetTarget(), &TESContainerCtorHook::Thunk);
+
+		TESContainerCtorHook hook;
+		hook.ready();
+		trampoline.write_branch<5>(hook.GetTarget(), trampoline.allocate(hook));
 
 		for (auto target : ContainerMenuListEnumerationHook::GetTargets())
 			trampoline.write_call<5>(target, &ContainerMenuListEnumerationHook::Thunk);
