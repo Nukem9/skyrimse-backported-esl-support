@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "supports": "windows",
+  "dependencies": [
+    "commonlibsse-ng-flatrim",
+    "spdlog",
+    "xbyak"
+  ]
+}
