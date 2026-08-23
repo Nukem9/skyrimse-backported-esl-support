@@ -2,10 +2,11 @@ cmake_minimum_required(VERSION 3.26)
 
 project(
     backported-esl-support
-    VERSION 1.2
+    VERSION 1.3
     LANGUAGES CXX)
 
 set(PROJECT_SOURCE_PATH "${CMAKE_CURRENT_LIST_DIR}/source")
+set(PROJECT_RESOURCES_PATH "${CMAKE_CURRENT_LIST_DIR}/resources")
 
 #
 # Store the current git commit hash for later use

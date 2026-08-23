@@ -27,7 +27,7 @@ SKSEPluginLoad(const LoadInterface *a_interface)
 	InitializeLog();
 
 	log::info(
-		"Backported Extended ESL Support version {}.{} by Nukem. Mod URL: "
+		"Backported Extended ESL Support version {}.{}. Mod URL: "
 		"https://www.nexusmods.com/skyrimspecialedition/mods/106441",
 		PluginDeclaration::GetSingleton()->GetVersion().major(),
 		PluginDeclaration::GetSingleton()->GetVersion().minor());
