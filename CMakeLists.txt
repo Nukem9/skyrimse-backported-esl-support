@@ -25,14 +25,23 @@ add_subdirectory("${PROJECT_SOURCE_PATH}")
 #
 # And finally produce build artifacts
 #
-set(PLUGIN_LOADER_OUTPUT_DIR "Data/SKSE/Plugins/")
 set(CPACK_PACKAGE_FILE_NAME "BEES-${CMAKE_PROJECT_VERSION_MAJOR}_${CMAKE_PROJECT_VERSION_MINOR}")
 
 install(
     TARGETS
         skse_output_dll
     RUNTIME
-        DESTINATION ${PLUGIN_LOADER_OUTPUT_DIR}
+        DESTINATION "Data/SKSE/Plugins/"
+)
+
+install(
+    FILES "${PROJECT_RESOURCES_PATH}/Data/Scripts/objectreference.pex"
+    DESTINATION "Data/Scripts"
+)
+
+install(
+    FILES "${PROJECT_RESOURCES_PATH}/Data/Scripts/Source/ObjectReference.psc"
+    DESTINATION "Data/Scripts/Source"
 )
 
 set(CPACK_GENERATOR "ZIP")
