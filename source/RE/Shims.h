@@ -5,15 +5,14 @@ namespace RE
 	class TESContainer1126 : public RE::TESContainer
 	{
 	public:
-		// New constructor is handled in ContainerHooks.cpps
 		void SetBlockStolenItems(bool a_blockStolenItems)
 		{
-			*reinterpret_cast<bool *>(&pad14) = a_blockStolenItems;
+			allowStolenItems = a_blockStolenItems; // Field misnamed
 		}
 
 		bool GetBlockStolenItems() const
 		{
-			return *reinterpret_cast<const bool *>(&pad14);
+			return allowStolenItems;
 		}
 	};
 	static_assert(sizeof(TESContainer1126) == sizeof(TESContainer));

@@ -1,8 +1,8 @@
 vcpkg_from_github(
         OUT_SOURCE_PATH SOURCE_PATH
-        REPO CharmedBaryon/CommonLibSSE
-        REF c4ab853d095e81e3390b282d7ba01ab2f24ebf25
-        SHA512  fd615c16f8f2c637cad5ed9d139c776d21314664f4084a62231645114d03ee74e720c1ecf09b4e5daa5d56d418374ad6d587806788d95af8ac08ce3de930015b
+        REPO alandtse/CommonLibSSE-NG
+        REF 2fcadbdf5e7fe65580ca5848d6604e5b88fab03b
+        SHA512 5dcd21269644bd9ed4b3548326573927aa0f8c23d3374ef53e5bbe121a4ee65c36393a0bfc4a14020432898e87ac9b627e5e33884b91b211612e7e57b84ac886
         HEAD_REF main
 )
 
@@ -24,6 +24,6 @@ file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/share/CommonLibSSE/CommonLibSSE")
 
 file(
-        INSTALL "${SOURCE_PATH}/LICENSE"
+        INSTALL "${SOURCE_PATH}/COPYING"
         DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}"
         RENAME copyright)

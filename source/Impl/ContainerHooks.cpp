@@ -22,7 +22,7 @@ namespace ContainerHooks
 			xor_(rax, rax);
 			mov(ptr[rcx + offsetof(RE::TESContainer, containerObjects)], rax);		// ContainerObjects
 			mov(dword[rcx + offsetof(RE::TESContainer, numContainerObjects)], eax);	// NumContainerObjects
-			mov(byte[rcx + offsetof(RE::TESContainer, pad14)], al);					// BlockStolenItems
+			mov(byte[rcx + 0x14], al);												// offsetof(RE::TESContainer, blockStolenItems)
 
 			mov(rax, rcx);
 			ret();

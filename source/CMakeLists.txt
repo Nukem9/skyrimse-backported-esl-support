@@ -114,6 +114,9 @@ target_compile_definitions(
 #
 # Dependencies
 #
+# DirectXTK
+find_package(directxtk CONFIG REQUIRED)
+
 # Spdlog
 find_package(spdlog CONFIG REQUIRED)
 target_link_libraries(${CURRENT_PROJECT} PRIVATE spdlog::spdlog)
